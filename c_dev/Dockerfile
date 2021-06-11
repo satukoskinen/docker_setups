@@ -5,7 +5,6 @@ FROM ubuntu:18.04
 # http://packages.ubuntu.com/de/trusty/build-essential
 RUN apt-get update && apt-get -y install \
 	build-essential \
-	wget
 
 # Install additional tools
 # http://packages.ubuntu.com/de/trusty/valgrind
@@ -15,9 +14,12 @@ RUN apt-get install -y \
 	valgrind \
 	git
 
-# Install zsh and oh-my-zsh
-RUN apt-get install -y zsh && \
-	sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install zsh and oh-my-zsh (comment out if you're fine with
+# the regular shell)
+RUN apt-get install -y \
+	zsh \
+	wget \
+	&& sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Create volume
 RUN mkdir -p /code
@@ -27,4 +29,5 @@ VOLUME /code
 WORKDIR /code
 
 # Default command to run on starting the container: start shell
+#CMD /bin/sh
 CMD /bin/zsh
