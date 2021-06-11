@@ -1,5 +1,5 @@
 # Base image
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Install basic packages
 # http://packages.ubuntu.com/de/trusty/build-essential
